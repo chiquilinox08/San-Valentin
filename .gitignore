@@ -1,33 +1,114 @@
-# Gradle files
-.gradle/
-build/
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Quieres ser mi San Valentín?</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-color: #ffebf0;
+            overflow: hidden;
+        }
+        .container {
+            margin-top: 100px;
+        }
+        h1 {
+            color: #e60073;
+            font-size: 30px;
+            animation: fadeIn 2s ease-in-out;
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        button {
+            font-size: 20px;
+            padding: 12px 25px;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+        #yes {
+            background-color: #ff4081;
+            color: white;
+            font-weight: bold;
+        }
+        #no {
+            background-color: #ccc;
+            color: black;
+            position: absolute;
+        }
+        #message {
+            font-size: 24px;
+            color: #e60073;
+            font-weight: bold;
+            margin-top: 20px;
+            opacity: 0;
+            transition: opacity 1s;
+        }
+        #image {
+            display: none;
+            width: 200px;
+            margin-top: 20px;
+        }
+        .heart {
+            position: absolute;
+            color: red;
+            font-size: 24px;
+            animation: floatUp 4s linear infinite;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-200px); opacity: 0; }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
 
-# Local configuration file (sdk path, etc)
-local.properties
+    <div class="container">
+        <h1>¿Quieres ser mi San Valentín? ❤️</h1>
+        <div class="buttons">
+            <button id="yes" onclick="yesClicked()">Sí 💖</button>
+            <button id="no" onmouseover="hideNoButton()">No 😢</button>
+        </div>
+        <p id="message">¡Sabía que dirías que sí! Te amo ❤️🥰</p>
+        <img id="image" src="https://cdn.pixabay.com/photo/2017/08/30/00/24/love-2698476_1280.png" alt="Corazón">
+    </div>
 
-# Log/OS Files
-*.log
+    <script>
+        function yesClicked() {
+            document.getElementById("message").style.opacity = "1";
+            document.getElementById("image").style.display = "block";
+            generateHearts();
+        }
 
-# Android Studio generated files and folders
-captures/
-.externalNativeBuild/
-.cxx/
-*.apk
-output.json
+        function hideNoButton() {
+            document.getElementById("no").style.display = "none";
+        }
 
-# IntelliJ
-*.iml
-.idea/
-misc.xml
-deploymentTargetDropDown.xml
-render.experimental.xml
+        function generateHearts() {
+            for (let i = 0; i < 15; i++) {
+                let heart = document.createElement("div");
+                heart.innerHTML = "❤️";
+                heart.className = "heart";
+                heart.style.left = Math.random() * window.innerWidth + "px";
+                heart.style.top = window.innerHeight + "px";
+                heart.style.fontSize = Math.random() * 40 + 20 + "px";
+                document.body.appendChild(heart);
+                
+                setTimeout(() => {
+                    heart.remove();
+                }, 4000);
+            }
+        }
+    </script>
 
-# Keystore files
-*.jks
-*.keystore
-
-# Google Services (e.g. APIs or Firebase)
-google-services.json
-
-# Android Profiling
-*.hprof
+</body>
+</html>
